@@ -5,10 +5,6 @@
 Servo servoCW;
 Servo servoCCW;
 
-int hold = 0;
-int drop = 1;
-int yeet = 0;
-
 // defines pins numbers
 const int trigPin = 7;
 const int echoPin = 6;
@@ -28,7 +24,7 @@ void setup(){
   servoCCW.attach(10);
   servoCW.write(90);
   servoCCW.write(90);
-  delay(1000);
+  //delay(1000);
 
   //set up LEDS
   pinMode(13, OUTPUT);
@@ -62,10 +58,7 @@ void loop(){
       
     }
 
-    if (Serial.available() > 0)
-      {
-        move = Serial.read();
-      }
+    move = Serial.read();
 
     if (move == 'd'){
 
@@ -73,18 +66,18 @@ void loop(){
       
       servoCW.write(180); 
       servoCCW.write(0);
-      delay(1000);
+      delay(3000);
       servoCW.write(90);
       servoCCW.write(90);
       digitalWrite(12, LOW);   // turn the LED off by making the voltage LOW
     }
-    else if (move == 'y'){
+    else {
 
       digitalWrite(13, HIGH);  // turn the LED on (HIGH is the voltage level)
 
       servoCW.write(15);                                                                                                                                                                           
       servoCCW.write(165);
-      delay(1000);
+      delay(3000);
       servoCW.write(90);
       servoCCW.write(90);
       digitalWrite(13, LOW);
